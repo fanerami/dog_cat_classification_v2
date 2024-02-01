@@ -6,6 +6,7 @@ data_ingestion:
   source_URL: https://drive.google.com/file/d/1KR9fyeh7EhG4LoWr3vaDLA8-dImZ5_4t/view?usp=sharing
   local_data_file: artifacts/data_ingestion/data.zip
   unzip_dir: artifacts/data_ingestion
+  training_data: artifacts/data_ingestion/dog_cat_data
 
 
 prepare_base_model:
@@ -17,3 +18,7 @@ prepare_base_model:
 training:
   root_dir: artifacts/training
   trained_model_path: artifacts/training/model.h5
+
+
+evaluation:
+  mlfow_tracking_uri: https://dagshub.com/fanerami/dog_cat_classification_v2.mlflow

@@ -3,7 +3,10 @@ from cnnClassifier.constants import (CONFIG_FILE_PATH,
                                      PARAMS_FILE_PATH)
 from cnnClassifier.entity.config_entity import (DataIngestionConfig,
                                                 PrepareBaseModelConfig,
-                                                TrainingConfig)
+                                                TrainingConfig,
+                                                EvaluationConfig)
+
+import os
 class ConfigurationManager:
 
     def __init__(self):
@@ -45,11 +48,12 @@ class ConfigurationManager:
 
         create_directories([self.config.training.root_dir])
 
+
         return TrainingConfig(
             root_dir=self.config.training.root_dir,
             trained_model_path=self.config.training.trained_model_path,
             updated_base_model_path=self.config.prepare_base_model.updated_base_model_path,
-            training_data=self.config.data_ingestion.unzip_dir,
+            training_data=self.config.data_ingestion.training_data,
             params_epochs=self.params.EPOCHS,
             params_batch_size=self.params.BATCH_SIZE,
             params_is_augmentation=self.params.AUGMENTATION,
@@ -57,4 +61,16 @@ class ConfigurationManager:
 
         )
 
+
+
+    def get_evaluation_config(self):
+
+        return EvaluationConfig(
+            path_of_model=self.config.training.trained_model_path,
+            training_data=self.config.data_ingestion.unzip_dir,
+            mlflow_uri=self.config.evaluation.mlfow_tracking_uri,
+            all_params=self.params,
+            params_image_size=self.params.IMAGE_SIZE,
+            params_batch_size=self.params.BATCH_SIZE
+        )
 
