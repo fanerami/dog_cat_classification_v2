@@ -67,7 +67,7 @@ class ConfigurationManager:
 
         return EvaluationConfig(
             path_of_model=self.config.training.trained_model_path,
-            training_data=self.config.data_ingestion.unzip_dir,
+            training_data=self.config.data_ingestion.training_data,
             mlflow_uri=self.config.evaluation.mlfow_tracking_uri,
             all_params=self.params,
             params_image_size=self.params.IMAGE_SIZE,
