@@ -1,5 +1,6 @@
 from cnnClassifier.entity.config_entity import PrepareBaseModelConfig
 import tensorflow as tf
+from pathlib import Path
 
 class PrepareBaseModel:
     def __init__(self, config:PrepareBaseModelConfig) :
@@ -19,7 +20,9 @@ class PrepareBaseModel:
 
 
     @staticmethod
-    def _prepare_full_model(model, classes, freeze_all, freeze_till, learning_rate):
+    def _prepare_full_model(model, classes, freeze_all, freeze_till,
+                            learning_rate, outptut_activation_function="softmax",
+                            params_metrics = ["accuracy"]):
         if freeze_all:
             for layer in model.layers:
                 model.trainable = False
@@ -30,7 +33,7 @@ class PrepareBaseModel:
         flatten_in = tf.keras.layers.Flatten()(model.output)
         prediction = tf.keras.layers.Dense(
             units=classes,
-            activation="softmax"
+            activation=outptut_activation_function
         )(flatten_in)
 
         full_model = tf.keras.models.Model(
@@ -41,7 +44,7 @@ class PrepareBaseModel:
         full_model.compile(
             optimizer=tf.keras.optimizers.SGD(learning_rate=learning_rate),
             loss=tf.keras.losses.CategoricalCrossentropy(),
-            metrics=["accuracy"]
+            metrics=params_metrics
         )
 
         full_model.summary()
@@ -54,7 +57,9 @@ class PrepareBaseModel:
             classes=self.config.params_classes,
             freeze_all=True,
             freeze_till=None,
-            learning_rate=self.config.params_learning_rate
+            learning_rate=self.config.params_learning_rate,
+            outptut_activation_function= self.config.params_outptut_activation_function,
+            params_metrics=self.config.params_metrics
         )
 
         self.save_model(path=self.config.updated_base_model_path, model=self.full_model)

@@ -26,7 +26,6 @@ class ConfigurationManager:
 
     def get_prepare_base_model_config(self):
         create_directories([self.config.prepare_base_model.root_dir])
-
         return PrepareBaseModelConfig(
             root_dir= self.config.prepare_base_model.root_dir,
             base_model_path = self.config.prepare_base_model.base_model_path,
@@ -35,7 +34,9 @@ class ConfigurationManager:
             params_learning_rate=self.params.LEARNING_RATE,
             params_include_top=self.params.INCLUDE_TOP,
             params_weights=self.params.WEIGHTS,
-            params_classes=self.params.CLASSES
+            params_classes=self.params.CLASSES,
+            params_outptut_activation_function=self.params.OUTPTUT_ACTIVATION_FUNCTION,
+            params_metrics=self.params.METRICS
         )
 
 

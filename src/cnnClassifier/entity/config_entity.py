@@ -18,3 +18,5 @@ class PrepareBaseModelConfig:
     params_include_top: bool
     params_weights: str
     params_classes: int
+    params_outptut_activation_function:str
+    params_metrics:list
