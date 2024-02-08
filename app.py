@@ -9,11 +9,11 @@ prediction_pipeline = PredictionPipeline("temp_image.jpg")
 
 
 
-@app.get("/hello")
+@app.get("/")
 async def hello_world():
-    return {"message": "Hello World"}
+    return {"message": "Hello World, you can use this api to predict dog or cat from image. Go to /prediction endpoint"}
 
-@app.get("/hello/{name}")
+@app.get("/{name}")
 async def hello_custom(name):
     return {"message": f"Hello {name}"}
 
