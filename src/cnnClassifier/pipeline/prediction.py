@@ -11,7 +11,7 @@ class PredictionPipeline:
         self.filename= filename
 
 
-    def predicition(self):
+    def predict(self):
         # load model
         model = load_model(os.path.join("model", "model.h5"))
 
@@ -37,7 +37,7 @@ if __name__ == '__main__':
     try:
         logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
         obj = PredictionPipeline(Path("artifacts/data_ingestion/dog_cat_data/cat/cat.8.jpg"))
-        print(obj.predicition())
+        print(obj.predict())
         logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
     except Exception as e:
         logger.exception(e)
