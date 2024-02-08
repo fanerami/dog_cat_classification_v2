@@ -1,0 +1,55 @@
+#Exclude the directory "artifacts" and its contents
+artifacts/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Exclude dvc and git files and folders
+.dvc/
+.github/
+.git/
+.dvcignore
+.gitignore
+dvc.lock
+dvc.yaml
+
+# Exclude logs
+logs/
+
+# Exclude notebooks for research
+research/
+
+# Exclude templates
+templates/
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Exclude some files
+
+main.py
+params.yaml
+scores.json
+template.py
